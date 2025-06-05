@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            background: #121212;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .body {
+            width: 250px;
+            height: auto;
+            background: #1f1f1f;
+            border-radius: 12px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            background-color: #1DB954;
+            color: #000;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 10px 12px;
+            gap: 8px;
+        }
+
+        .navbar img {
+            height: 30px;
+        }
+
+        .state {
+            display: none;
+            padding: 20px;
+            color: #E0E0E0;
+        }
+
+        .logo {
+            display: block;
+            margin: 0 auto 100px;
+        }
+
+        .need-login-text {
+            font-weight: 600;
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        button {
+            outline: none;
+            border: none;
+            display: block;
+            width: 178px;
+            height: 36px;
+            margin: 0 auto;
+            background: linear-gradient(145deg, #1ED760, #1DB954);
+            font-weight: 700;
+            font-size: 12px;
+            color: #000;
+            text-transform: uppercase;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+
+        button:hover {
+            background: #1fdf64;
+        }
+
+        button:active {
+            background: #1db954a0;
+            color: #ffffff;
+        }
+
+        button:disabled {
+            background-color: #333;
+            color: #999;
+            cursor: not-allowed;
+        }
+
+
+
+        .image-container {
+            position: relative;
+            width: 178px;
+            height: 178px;
+            margin: 0 auto 16px;
+            background: #2a2a2a;
+            border-radius: 6px;
+            overflow: hidden;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 16px;
+            background-size: cover;
+
+        }
+
+        .image-container.loading:after {
+            content: '';
+            position: absolute;
+            top: -150px;
+            left: 0;
+            width: 50%;
+            height: 300%;
+            background-size: cover;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: slide 1.5s infinite;
+        }
+
+        @keyframes slide {
+            0% {
+                transform: rotate(30deg) translateX(-200%);
+            }
+
+            100% {
+                transform: rotate(30deg) translateX(200%);
+            }
+        }
+
+        .gradient {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(rgba(0, 0, 0, 0.6), transparent);
+            padding: 10px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+
+
+
+
+        #loading {
+            display: none;
+
+        }
+
+        #loading .loading-inner {
+            height: auto;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #loading .loading-inner img {
+            width: 100px;
+            height: 100px;
+            margin: auto;
+            transform: rotate(-45deg);
+        }
+
+
+
+        .finished {
+            display: block;
+            margin: 0 auto 16px;
+        }
+
+
+        .intruction-box {
+            color: #1ED760;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            border-radius: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <img src="./icons/Icon.png" alt="icon" />
+        My Extension Name
+    </div>
+
+    <div class="body">
+        <div class="state" id="not-signed-in">
+            <img src="./logo.png" width="130" alt="" class="logo">
+            <div class="need-login-text">
+                Log in to your account
+            </div>
+            <button id="sign-in">
+                Log in
+            </button>
+        </div>
+        <div class="state" id="signed-in-not-on-spotify">
+            <form action="https://open.spotify.com" target="_blank">
+                <button type="submit">
+                    GO TO Spotify
+                </button>
+            </form>
+        </div>
+        <div class="state" id="signed-in-not-on-artist">
+
+            <div class="intruction-box">
+                open a artist page to start analysis
+            </div>
+        </div>
+        <div class="state" id="ready">
+            <div class="image-container loading" id="image">
+                <div class="gradient" id="artist-name">
+                    ...
+                </div>
+            </div>
+            <button id="songs">
+                Show all songs
+            </button>
+        </div>
+
+        <div class="state" id="loading">
+            <div class="loading-inner">
+                <img src="./loader.gif" alt="">
+            </div>
+
+        </div>
+
+        <div class="state" id="finished">
+            <img src="./finished.png" width="100" class="finished" alt="finished">
+        </div>
+    </div>
+
+    <script src="./popup.js"></script>
+</body>
+
+</html>

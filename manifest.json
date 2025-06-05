@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "Spotify Artist Chart",
+  "description":"Install this extension to display a chart of all tracks by an artist on Spotify with just one click. ",
+  "version": "1.0.0",
+  "action": {
+    "default-icon": {
+      "16": "icons/Icon.png",
+      "32": "icons/Icon.png",
+      "64": "icons/Icon.png",
+      "128": "icons/Icon.png"
+    },
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "16": "icons/Icon.png",
+    "32": "icons/Icon.png",
+    "64": "icons/Icon.png",
+    "128": "icons/Icon.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "host_permissions": [
+    "https://api.spotify.com/"
+  ],
+  "permissions": [
+    "storage",
+    "identity",
+    "tabs",
+    "notifications"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "icons/*"
+      ],
+      "matches": [
+        "<all_urls>"
+      ],
+      "run_at": "document_start"
+    }
+  ]
+}
